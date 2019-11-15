@@ -1,6 +1,6 @@
 name: CI
-on: gollum
-#on: [push]
+#on: gollum
+on: [push]
 
 jobs:
   build:
@@ -18,8 +18,10 @@ jobs:
     - name: Check PHP ini
       run: php --ini
     - name: Check Composer
-      #run: composer --version
-      run: which composer
-      shell: bash
-    #- name: Check Composer cache
-    #  run: composer config -g cache-dir
+      run: composer --version
+      if: matrix.os == ubuntu-latest
+      run: echo %LOCALAPPDATA%\Composer%
+      if: matrix.os == windows-latest
+    - name: Check Composer cache
+      run: composer config -g cache-dir
+      if: matrix.os == ubuntu-latest
