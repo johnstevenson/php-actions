@@ -1,6 +1,6 @@
 name: Matrix
-on: gollum
-#on: [push]
+#on: gollum
+on: [push]
 jobs:
   run:
     runs-on: ${{ matrix.operating-system }}
@@ -19,10 +19,12 @@ jobs:
         php-version: ${{ matrix.php-versions }}
         extension-csv: mbstring, xdebug #optional, setup extensions
         #ini-values-csv: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
-        coverage: xdebug #optional, setup coverage driver
+        #coverage: xdebug #optional, setup coverage driver
         #pecl: true #optional, setup PECL
     - name: Check PHP Version
       run: php -v
+    - name: Check PHP binary
+      run: php -r "echo PHP_BINARY, PHP_EOL;"
     - name: Check Composer Version
       run: composer -V
     - name: Check PHP Extensions
