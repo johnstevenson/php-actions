@@ -1,8 +1,8 @@
 name: Matrix
-#on: gollum
-on: [push]
+on: gollum
+#on: [push]
 jobs:
-  run:    
+  run:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       max-parallel: 15
