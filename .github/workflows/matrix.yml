@@ -1,6 +1,6 @@
 name: Matrix
-on: gollum
-#on: [push]
+#on: gollum
+on: [push]
 jobs:
   run:    
     runs-on: ${{ matrix.operating-system }}
@@ -8,7 +8,7 @@ jobs:
       max-parallel: 15
       matrix:
         operating-system: [ubuntu-latest, windows-latest, macOS-latest]
-        php-versions: ['5.6', '7.0', '7.1', '7.2', '7.3']
+        php-versions: ['7.2', '7.3']
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
     - name: Checkout
@@ -18,9 +18,9 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         extension-csv: mbstring, xdebug #optional, setup extensions
-        ini-values-csv: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
+        #ini-values-csv: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
         coverage: xdebug #optional, setup coverage driver
-        pecl: true #optional, setup PECL
+        #pecl: true #optional, setup PECL
     - name: Check PHP Version
       run: php -v
     - name: Check Composer Version
