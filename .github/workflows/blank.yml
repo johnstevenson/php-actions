@@ -27,3 +27,5 @@ jobs:
     - name: Check Composer cache
       run: composer config -g cache-dir
       if: matrix.os == 'ubuntu-latest'
+    - name: Show HOME location
+      run: echo $HOME
