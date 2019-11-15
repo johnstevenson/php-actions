@@ -22,6 +22,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
     - name: Check Composer cache location
       run: echo %LOCALAPPDATA%\Composer
+      shell: cmd
       if: matrix.os == 'windows-latest'
     - name: Check Composer cache
       run: composer config -g cache-dir
