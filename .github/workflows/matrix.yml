@@ -1,5 +1,6 @@
 name: Matrix
-on: [push]
+on: gollum
+#on: [push]
 jobs:
   run:    
     runs-on: ${{ matrix.operating-system }}
