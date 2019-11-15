@@ -18,6 +18,8 @@ jobs:
     - name: Check PHP ini
       run: php --ini
     - name: Check Composer
-      run: composer --version
-    - name: Check Composer cache
-      run: composer config -g cache-dir
+      #run: composer --version
+      run: which composer
+      shell: bash
+    #- name: Check Composer cache
+    #  run: composer config -g cache-dir
