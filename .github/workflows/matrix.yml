@@ -21,10 +21,10 @@ jobs:
           
     - name: Get installed PHP version
       id: php-version
-      run: echo "::set-output name=dir::$(php -r 'echo PHP_VERSION."-".PHP_ZTS;')"
+      run: echo "::set-output name=ver::$(php -r 'echo PHP_VERSION."-".PHP_ZTS;')"
       shell: bash
       
-    - name: Cache last run php version
+    - name: Restore cached php version
       id: php-cache  
       uses: actions/cache@v1
       with:
