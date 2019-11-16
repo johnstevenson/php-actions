@@ -39,7 +39,7 @@ jobs:
         #ini-values-csv: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
         #coverage: xdebug #optional, setup coverage driver
         #pecl: true #optional, setup PECL
-      if: steps.php-cache.outputs.cache-hit != 'true'
+      #if: steps.php-cache.outputs.cache-hit != 'true'
     
     - name: Report versions
       run: |
