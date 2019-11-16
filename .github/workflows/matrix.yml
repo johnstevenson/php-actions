@@ -21,6 +21,10 @@ jobs:
         #ini-values-csv: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
         #coverage: xdebug #optional, setup coverage driver
         #pecl: true #optional, setup PECL
+    - name: Report versions
+      run: |
+        php -v
+        composer --version
     - name: Check PHP Version
       run: php -v
     - name: Check PHP binary
