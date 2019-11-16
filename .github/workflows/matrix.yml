@@ -23,8 +23,7 @@ jobs:
         #pecl: true #optional, setup PECL
     - name: Report versions
       run: |
-        php -v
-        echo
+        php -v        
         composer --version --ansi
     - name: Check PHP Version
       run: php -v
