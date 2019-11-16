@@ -15,7 +15,8 @@ jobs:
       uses: actions/checkout@master
     - name: Get PHP location
       id: php-cache
-      run: echo "::set-output name=dir::$env:PHPROOT"
+      run: echo "::set-output name=dir::$(php -r 'echo(PHP_VERSION);')"
+      shell: bash
     - name: Cache last run php  
       uses: actions/cache@v1
       with:
