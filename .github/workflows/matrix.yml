@@ -24,11 +24,14 @@ jobs:
     - name: Report versions
       run: |
         php -v
-        composer --version
+        echo
+        composer --version --ansi
     - name: Check PHP Version
       run: php -v
     - name: Check PHP binary
       run: php -r "echo PHP_BINARY, PHP_EOL;"
+    - name: Check env PHPROOT
+      run: echo -$env:PHPROOT
     - name: Check Composer Version
       run: composer -V
     - name: Check PHP Extensions
