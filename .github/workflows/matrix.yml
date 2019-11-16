@@ -10,18 +10,27 @@ jobs:
         operating-system: [windows-latest]
         php-versions: ['7.2', '7.3', '7.4']
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
+    
     steps:
     - name: Checkout
       uses: actions/checkout@master
-    - name: Get PHP location
-      id: php-cache
-      run: echo "::set-output name=dir::$(php -r 'echo(PHP_VERSION);')"
+    
+    - name: Get installed PHP location
+      id: php-location
+      run: echo "::set-output name=dir::$($env:PHPROOT)"
+          
+    - name: Get installed PHP version
+      id: php-version
+      run: echo "::set-output name=dir::$(php -r 'echo PHP_VERSION."-".PHP_ZTS;')"
       shell: bash
-    - name: Cache last run php  
+      
+    - name: Cache last run php version
+      id: php-cache  
       uses: actions/cache@v1
       with:
-        path: ${{ steps.php-cache.outputs.dir }}
-        key: ${{ matrix.php-versions }}-php       
+        path: ${{ steps.php-location.outputs.dir }}
+        key: php-${{ matrix.php-versions }}-${{ steps.php-version.outputs.ver }}       
+    
     - name: Setup PHP
       uses: shivammathur/setup-php@master
       with:
@@ -30,17 +39,24 @@ jobs:
         #ini-values-csv: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
         #coverage: xdebug #optional, setup coverage driver
         #pecl: true #optional, setup PECL
+      if: steps.php-cache.outputs.cache-hit != 'true'
+    
     - name: Report versions
       run: |
         php -v        
         composer --version --ansi
+    
     - name: Check PHP Version
       run: php -v
+    
     - name: Check PHP binary
       run: php -r "echo PHP_BINARY, PHP_EOL;"
+    
     - name: Check env PHPROOT
       run: echo $env:PHPROOT
+    
     - name: Check Composer Version
       run: composer -V
+    
     - name: Check PHP Extensions
       run: php -m
