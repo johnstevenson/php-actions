@@ -8,7 +8,7 @@ jobs:
       max-parallel: 15
       matrix:
         operating-system: [windows-latest]
-        php-versions: ['7.2', '7.3', '7.4']
+        php-versions: ['7.3', '7.4']
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     
     steps:
@@ -17,7 +17,8 @@ jobs:
     
     - name: Get installed PHP location
       id: php-location
-      run: echo "::set-output name=dir::$($env:PHPROOT)"
+      run: echo "::set-output name=dir::$PHPROOT"
+      shell: bash
           
     - name: Get installed PHP version
       id: php-version
