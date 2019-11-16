@@ -1,6 +1,6 @@
 name: CI
-#on: gollum
-on: [push]
+on: gollum
+#on: [push]
 
 jobs:
   build:
