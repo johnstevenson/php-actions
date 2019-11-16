@@ -13,6 +13,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
+    - name: Get PHP location
+      id: php-cache
+      run: echo "::set-output name=dir::$env:PHPROOT"
+    - name: Cache last run php  
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.php-cache.outputs.dir }}
+        key: ${{ matrix.php-versions }}-php       
     - name: Setup PHP
       uses: shivammathur/setup-php@master
       with:
@@ -30,7 +38,7 @@ jobs:
     - name: Check PHP binary
       run: php -r "echo PHP_BINARY, PHP_EOL;"
     - name: Check env PHPROOT
-      run: echo -$env:PHPROOT
+      run: echo $env:PHPROOT
     - name: Check Composer Version
       run: composer -V
     - name: Check PHP Extensions
