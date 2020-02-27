@@ -47,26 +47,8 @@ jobs:
       with:
         php-version: '5.4'
 
-    - name: Composer location Windows
-      run: where composer
-      shell: cmd
-      if: matrix.os == 'windows-latest'
-
-    - name: Composer location bash
-      run: which composer
-      shell: bash
-
-    - name: Composer version in bash
-      run: composer --version
-      shell: bash
-
-    - name: Composer shell script
-      run: Get-Content 'c:\tools\php\composer'
-      if: matrix.os == 'windows-latest'
-
-    - name: Composer bat
-      run: Get-Content 'c:\tools\php\composer.bat'
-      if: matrix.os == 'windows-latest'
+    - name: Composer update
+      run: composer selfupdate
 
     - name: Composer diagnose
-      run: composer diagnose --no-interaction
+      run: composer diagnose
