@@ -8,28 +8,36 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
-          os: [ubuntu-latest, windows-latest]
+          os: [windows-latest, ubuntu-latest]
     steps:
     - uses: actions/checkout@v1
+
     - name: Check PHP version
       run: php -v
+
     - name: Check PHP extensions
       run: php -m
+
     - name: Check PHP ini
       run: php --ini
+
     - name: Check Composer
       run: composer --version
       if: matrix.os == 'ubuntu-latest'
+
     - name: Check Composer cache location with cmd
       run: echo %LOCALAPPDATA%\Composer
       if: matrix.os == 'windows-latest'
       shell: cmd
+
     - name: Check Composer cache location
       run: echo -$env:LOCALAPPDATA\Composer
       if: matrix.os == 'windows-latest'
+
     - name: Check Composer cache
       run: composer config -g cache-dir
       if: matrix.os == 'ubuntu-latest'
+
     - name: Show HOME location
       run: echo $HOME
 
