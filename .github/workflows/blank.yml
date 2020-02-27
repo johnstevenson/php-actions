@@ -60,5 +60,13 @@ jobs:
       run: composer --version
       shell: bash
 
+    - name: Composer shell script
+      run: Get-Content 'c:\tools\php\composer'
+      if: matrix.os == 'windows-latest'
+
+    - name: Composer bat
+      run: Get-Content 'c:\tools\php\composer.bat'
+      if: matrix.os == 'windows-latest'
+
     - name: Composer diagnose
       run: composer diagnose --no-interaction
