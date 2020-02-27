@@ -47,5 +47,9 @@ jobs:
       with:
         php-version: '5.4'
 
+    - name: Composer version in bash
+      run: composer --version
+      shell: bash
+
     - name: Composer diagnose
-      run: composer diagnose --no-interaction --verbose
+      run: composer diagnose --no-interaction
