@@ -1,6 +1,6 @@
 name: Matrix
-#on: gollum
-on: [push]
+on: gollum
+#on: [push]
 jobs:
   run:
     runs-on: ${{ matrix.operating-system }}
@@ -10,28 +10,28 @@ jobs:
         operating-system: [windows-latest]
         php-versions: ['7.3', '7.4']
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
-    
+
     steps:
     - name: Checkout
       uses: actions/checkout@master
-    
+
     - name: Get installed PHP location
       id: php-location
       run: echo "::set-output name=dir::$PHPROOT"
       shell: bash
-          
+
     - name: Get installed PHP version
       id: php-version
       run: echo "::set-output name=ver::$(php -r 'echo PHP_VERSION."-".PHP_ZTS;')"
       shell: bash
-      
+
     - name: Restore cached php version
-      id: php-cache  
+      id: php-cache
       uses: actions/cache@v1
       with:
         path: ${{ steps.php-location.outputs.dir }}
-        key: ${{ matrix.php-versions }}-php-${{ steps.php-version.outputs.ver }}       
-    
+        key: ${{ matrix.php-versions }}-php-${{ steps.php-version.outputs.ver }}
+
     - name: Setup PHP
       uses: shivammathur/setup-php@master
       with:
@@ -41,23 +41,23 @@ jobs:
         #coverage: xdebug #optional, setup coverage driver
         #pecl: true #optional, setup PECL
       #if: steps.php-cache.outputs.cache-hit != 'true'
-    
+
     - name: Report versions
       run: |
-        php -v        
+        php -v
         composer --version --ansi
-    
+
     - name: Check PHP Version
       run: php -v
-    
+
     - name: Check PHP binary
       run: php -r "echo PHP_BINARY, PHP_EOL;"
-    
+
     - name: Check env PHPROOT
       run: echo $env:PHPROOT
-    
+
     - name: Check Composer Version
       run: composer -V
-    
+
     - name: Check PHP Extensions
       run: php -m

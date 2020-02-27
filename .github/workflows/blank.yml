@@ -47,4 +47,4 @@ jobs:
         php-version: '5.4'
 
     - name: Composer diagnose
-      run: composer diagnose
+      run: composer diagnose --no-interaction
