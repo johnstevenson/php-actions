@@ -49,6 +49,7 @@ jobs:
 
     - name: Composer location Windows
       run: where composer
+      shell: cmd
       if: matrix.os == 'windows-latest'
 
     - name: Composer location bash
