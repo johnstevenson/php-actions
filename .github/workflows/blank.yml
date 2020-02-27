@@ -1,6 +1,6 @@
 name: CI
-on: gollum
-#on: [push]
+#on: gollum
+on: [push]
 
 jobs:
   build:
@@ -32,3 +32,11 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
     - name: Show HOME location
       run: echo $HOME
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '5.4'
+
+    - name: Composer diagnose
+      run: composer diagnose
