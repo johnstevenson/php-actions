@@ -47,6 +47,14 @@ jobs:
       with:
         php-version: '5.4'
 
+    - name: Composer location Windows
+      run: where composer
+      if: matrix.os == 'windows-latest'
+
+    - name: Composer location bash
+      run: which composer
+      shell: bash
+
     - name: Composer version in bash
       run: composer --version
       shell: bash
