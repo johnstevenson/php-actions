@@ -30,18 +30,18 @@ jobs:
       run: which composer
       if: matrix.os == 'ubuntu-latest'
 
-    - name: Check Composer can update
-      run: composer self-update 1.9.0 --verbose
-      if: matrix.os == 'ubuntu-latest'
+    #- name: Check Composer can update
+    #  run: composer self-update 1.9.0 --verbose
+    #  if: matrix.os == 'ubuntu-latest'
 
-    - name: Check Composer cache location with cmd
-      run: echo %LOCALAPPDATA%\Composer
-      if: matrix.os == 'windows-latest'
-      shell: cmd
+    #- name: Check Composer cache location with cmd
+    #  run: echo %LOCALAPPDATA%\Composer
+    #  if: matrix.os == 'windows-latest'
+    #  shell: cmd
 
-    - name: Check Composer cache location
-      run: echo -$env:LOCALAPPDATA\Composer
-      if: matrix.os == 'windows-latest'
+    #- name: Check Composer cache location
+    #  run: echo -$env:LOCALAPPDATA\Composer
+    #  if: matrix.os == 'windows-latest'
 
     - name: Check Composer cache
       run: composer config -g cache-dir
@@ -55,11 +55,11 @@ jobs:
       with:
         php-version: '5.4'
 
-    - name: Disable tls
-      run: composer config -g disable-tls true
+    #- name: Disable tls
+    #  run: composer config -g disable-tls true
 
-    - name: Composer update
-      run: composer self-update
+    #- name: Composer update
+    #  run: composer self-update
 
     - name: Composer diagnose
       run: composer diagnose
