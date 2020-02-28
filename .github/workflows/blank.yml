@@ -63,3 +63,4 @@ jobs:
 
     - name: Composer diagnose
       run: composer diagnose
+      shell: bash
