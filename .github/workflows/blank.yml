@@ -65,8 +65,14 @@ jobs:
     #  run: composer diagnose
     #  shell: bash
 
-    - name: Test exit code from bash
+    - name: Test exit code from default bash
       run: bash ./exit.sh 42
+      if: matrix.os == 'ubuntu-latest'
+
+    - name: Test exit code from bash
+      run: ./exit.sh 42
+      shell: bash
+      if: matrix.os == 'windows-latest'
 
     - name: Test exit code pwsh
       run: ./exit.ps1 42
