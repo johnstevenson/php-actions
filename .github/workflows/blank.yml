@@ -65,16 +65,16 @@ jobs:
     #  run: composer diagnose
     #  shell: bash
 
-    - name: Test exit code from default bash
+    - name: Exit code should be 42 - default bash
       run: bash ./exit.sh 42
       if: matrix.os == 'ubuntu-latest'
 
-    - name: Test exit code from bash
+    - name: Exit code should be 42 - shell bash
       run: ./exit.sh 42
       shell: bash
       if: matrix.os == 'windows-latest'
 
-    - name: Test exit code pwsh
+    - name: Exit code should be 42 - shell pwsh
       run: ./exit.ps1 42
       shell: pwsh
       if: always()
