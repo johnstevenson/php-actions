@@ -61,6 +61,16 @@ jobs:
     #- name: Composer update
     #  run: composer self-update
 
-    - name: Composer diagnose
-      run: composer diagnose
+    #- name: Composer diagnose
+    #  run: composer diagnose
+    #  shell: bash
+
+    - name: Test exit code from bash
+      run: ./exit.sh 42
       shell: bash
+
+    - name: Test exit code pwsh
+      run: ./exit.ps1 42
+      shell: pwsh
+      if: always()
+
