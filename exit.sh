@@ -1,1 +1,2 @@
-exit $1
+exitCode=${1:-0}
+exit $exitCode
