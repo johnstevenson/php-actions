@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
 
     - name: Get installed PHP location
       id: php-location
@@ -27,13 +27,13 @@ jobs:
 
     - name: Restore cached php version
       id: php-cache
-      uses: actions/cache@v1
+      uses: actions/cache@v2
       with:
         path: ${{ steps.php-location.outputs.dir }}
         key: ${{ matrix.php-versions }}-php-${{ steps.php-version.outputs.ver }}
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@master
+      uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-versions }}
         extension-csv: mbstring, xdebug #optional, setup extensions
