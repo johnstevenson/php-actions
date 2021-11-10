@@ -1,5 +1,4 @@
-name: CI
-#on: gollum
+name: Native PHP
 on: [push]
 
 jobs:
@@ -11,7 +10,7 @@ jobs:
           os: [ubuntu-latest, windows-latest]
         fail-fast: false
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v
 
     - name: Check PHP version
       run: php -v
@@ -24,32 +23,18 @@ jobs:
 
     - name: Check Composer
       run: composer --version
-      #if: matrix.os == 'ubuntu-latest'
 
     - name: Check Composer location
       run: which composer
       #if: matrix.os == 'ubuntu-latest'
 
-    #- name: Check Composer can update
-    #  run: composer self-update 1.9.0 --verbose
-    #  if: matrix.os == 'ubuntu-latest'
-
-    #- name: Check Composer cache location with cmd
-    #  run: echo %LOCALAPPDATA%\Composer
-    #  if: matrix.os == 'windows-latest'
-    #  shell: cmd
-
-    #- name: Check Composer cache location
-    #  run: echo -$env:LOCALAPPDATA\Composer
-    #  if: matrix.os == 'windows-latest'
-
     - name: Check Composer cache
       run: composer config -g cache-dir
-      #if: matrix.os == 'ubuntu-latest'
 
     - name: Show HOME location
       run: echo $HOME
 
+    # Older stuff used for testing bits and bobs
     #- name: Setup PHP
     #  uses: shivammathur/setup-php@v2
     #  with:
@@ -73,4 +58,3 @@ jobs:
     #  run: php -r "exit(42);"
     #  shell: pwsh
     #  if: always()
-
