@@ -7,40 +7,18 @@ jobs:
       max-parallel: 15
       matrix:
         operating-system: [windows-latest]
-        php-versions: ['7.3', '7.4']
+        php-versions: ['5.5', '7.4']
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
 
     steps:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Get installed PHP location
-      id: php-location
-      run: echo "::set-output name=dir::$PHPROOT"
-      shell: bash
-
-    - name: Get installed PHP version
-      id: php-version
-      run: echo "::set-output name=ver::$(php -r 'echo PHP_VERSION."-".PHP_ZTS;')"
-      shell: bash
-
-    - name: Restore cached php version
-      id: php-cache
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.php-location.outputs.dir }}
-        key: ${{ matrix.php-versions }}-php-${{ steps.php-version.outputs.ver }}
-
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-versions }}
         extensions: none
-
-    - name: Report versions
-      run: |
-        php -v
-        composer --version --ansi
 
     - name: Check PHP Version
       run: php -v
@@ -51,8 +29,8 @@ jobs:
     - name: Check env PHPROOT
       run: echo $env:PHPROOT
 
-    - name: Check Composer Version
-      run: composer -V
+    - name: Check ini
+      run: php --ini
 
     - name: Check PHP Extensions
       run: php -m
