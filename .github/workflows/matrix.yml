@@ -18,7 +18,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-versions }}
-        extensions: none
+        tools: composer
 
     - name: Check PHP Version
       run: php -v
@@ -35,9 +35,6 @@ jobs:
     - name: Check PHP Extensions
       run: php -m
 
-    - name: Delete ini
-      shell: php {0}
-      run: <?php @unlink(php_ini_loaded_file());
-
-    - name: Check ini
-      run: php --ini
+    - name: Where is composer
+      run: where composer
+      shell: cmd
