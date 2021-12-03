@@ -39,7 +39,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '5.3.3'
+        php-version: '5.3'
 
     #- name: Disable tls
     #  run: composer config -g disable-tls true
