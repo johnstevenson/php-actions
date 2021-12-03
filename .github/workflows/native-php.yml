@@ -7,7 +7,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
-          os: [ubuntu-latest, windows-latest]
+          #os: [ubuntu-latest, windows-latest]
+          os: [ubuntu-latest]
         fail-fast: false
     steps:
     - uses: actions/checkout@v2
@@ -38,7 +39,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '5.5.3'
+        php-version: '5.3.3'
 
     #- name: Disable tls
     #  run: composer config -g disable-tls true
