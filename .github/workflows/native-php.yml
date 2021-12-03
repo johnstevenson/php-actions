@@ -35,10 +35,10 @@ jobs:
       run: echo $HOME
 
     # Older stuff used for testing bits and bobs
-    #- name: Setup PHP
-    #  uses: shivammathur/setup-php@v2
-    #  with:
-    #    php-version: '7.4'
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '5.5.3'
 
     #- name: Disable tls
     #  run: composer config -g disable-tls true
@@ -46,10 +46,13 @@ jobs:
     #- name: Composer update
     #  run: composer self-update
 
-    #- name: Composer diagnose
-    #  run: composer diagnose
-    #  shell: bash
+    - name: Composer diagnose
+      run: composer diagnose
+      shell: bash
 
+    - name: Require something
+      run: composer require composer/xdebug-handler --no-interaction --no-progress --prefer-dist
+      shell: bash
     #- name: Exit code should be 42 - shell bash
     #  run: php -r "exit(42);"
     #  shell: bash
