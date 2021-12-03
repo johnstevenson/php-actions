@@ -53,6 +53,7 @@ jobs:
     - name: Require something
       run: composer require composer/xdebug-handler --no-interaction --no-progress --prefer-dist
       shell: bash
+
     #- name: Exit code should be 42 - shell bash
     #  run: php -r "exit(42);"
     #  shell: bash
